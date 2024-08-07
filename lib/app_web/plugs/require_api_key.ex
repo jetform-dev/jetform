@@ -1,4 +1,4 @@
-defmodule AppWeb.Plug.RequireAPIKey do
+defmodule AppWeb.Plugs.RequireAPIKey do
   import Plug.Conn
 
   alias App.Users

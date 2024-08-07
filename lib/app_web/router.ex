@@ -13,7 +13,7 @@ defmodule AppWeb.Router do
     plug :put_root_layout, html: {AppWeb.Layouts, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-    plug AppWeb.Plug.Globals
+    plug AppWeb.Plugs.Globals
   end
 
   pipeline :auth_area do
@@ -33,12 +33,12 @@ defmodule AppWeb.Router do
 
   pipeline :protected_api do
     plug :accepts, ["json"]
-    plug AppWeb.Plug.RequireAPIKey
+    plug AppWeb.Plugs.RequireAPIKey
   end
 
   pipeline :admin_api do
     plug :accepts, ["json"]
-    plug AppWeb.Plug.RequireAPIKey, role: :admin
+    plug AppWeb.Plugs.RequireAPIKey, role: :admin
   end
 
   pipeline :openapi do

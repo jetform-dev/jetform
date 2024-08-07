@@ -1,4 +1,4 @@
-defmodule AppWeb.Plug.Globals do
+defmodule AppWeb.Plugs.Globals do
   import Plug.Conn
   alias AppWeb.Utils
 

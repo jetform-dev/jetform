@@ -93,11 +93,9 @@ defmodule AppWeb.AdminLive.Product.Components.VisitorsMetricsChart do
   end
 
   defp fetch_metrics(product, {start_time, end_time}, type) do
-    product = App.Repo.preload(product, :user)
-
     # get date from start_time to be use for the cache key
     date = Timex.format!(start_time, "%Y-%m-%d", :strftime)
-    url = "/#{product.user.username}/#{product.slug}"
+    url = App.Products.public_path(product)
     cache_key = "products:#{product.id}:metrics:#{url}:#{type}:#{date}"
 
     Cachex.fetch(
